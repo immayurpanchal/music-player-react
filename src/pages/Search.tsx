@@ -5,7 +5,7 @@ import BackChevron from '../components/Icons/BackChevron'
 import KeyboardIcon from '../components/Icons/Keyboard'
 import SearchIcon from '../components/Icons/SearchIcon'
 
-const fetcher = url => fetch(url).then(r => r.json())
+const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 const SearchPage = () => {
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -41,10 +41,10 @@ const SearchPage = () => {
 					}}
 				>
 					<input
+						ref={inputRef}
 						className='py-3 pl-14 rounded-2xl pr-4 bg-transparent w-full neumorphism focus-visible:outline-0 text-lg placeholder:text-dark-100 '
 						placeholder='Search Your Music'
 						type='search'
-						ref={inputRef}
 					/>
 				</form>
 			</div>
@@ -53,10 +53,10 @@ const SearchPage = () => {
 				{data?.results?.map(song => {
 					const { image, name, id, year } = song
 					return (
-						<div className='flex items-center gap-3' key={id}>
+						<div key={id} className='flex items-center gap-3'>
 							<img
+								className={'rotate-45 w-[60px] h-[60px] rounded-xl bg-cover row-span-2 mx-4'}
 								src={image?.[2]?.link}
-								className={`rotate-45 w-[60px] h-[60px] rounded-xl bg-cover row-span-2 mx-4`}
 							/>
 							<div className='flex flex-col'>
 								<span className='text-base'>{name}</span>
