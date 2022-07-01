@@ -5,6 +5,17 @@ import BackChevron from '../components/Icons/BackChevron'
 import KeyboardIcon from '../components/Icons/Keyboard'
 import SearchIcon from '../components/Icons/SearchIcon'
 
+type Image = {
+	link: string
+}
+
+type Song = {
+	id: string
+	image: Array<Image>
+	name: string
+	year: number
+}
+
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 const SearchPage = () => {
@@ -50,12 +61,14 @@ const SearchPage = () => {
 			</div>
 			<span className='text-lg text-dark-100'>Recently Searched</span>
 			<div className='flex flex-col gap-10'>
-				{data?.results?.map(song => {
+				{data?.results?.map((song: Song) => {
 					const { image, name, id, year } = song
 					return (
 						<div key={id} className='flex items-center gap-3'>
 							<img
-								className={'rotate-45 w-[60px] h-[60px] rounded-xl bg-cover row-span-2 mx-4'}
+								className={
+									'rotate-45 w-[60px] h-[60px] rounded-xl bg-cover row-span-2 mx-4'
+								}
 								src={image?.[2]?.link}
 							/>
 							<div className='flex flex-col'>
