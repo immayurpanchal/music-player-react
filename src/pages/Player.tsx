@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Button from '../components/Button/Button'
 import BackChevron from '../components/Icons/BackChevron'
 import Disk from '../components/Icons/Disk'
@@ -27,6 +27,7 @@ const Player = () => {
 	const { singer, title, trackSrc, image } = state as PlayerProps
 	const playerRef = useRef<HTMLAudioElement>(null)
 	const [isPlaying, setIsPlaying] = useState(true)
+	const navigate = useNavigate()
 
 	const onPlay = () => {
 		if (playerRef.current) {
@@ -40,10 +41,6 @@ const Player = () => {
 			playerRef.current.pause()
 			setIsPlaying(false)
 		}
-	}
-
-	const handleBack = () => {
-		console.warn('back')
 	}
 
 	const handlePlaylistMenu = () => {
@@ -71,7 +68,7 @@ const Player = () => {
 	return (
 		<div className='grid gap-y-16'>
 			<div className='flex justify-between items-center'>
-				<Button shape='circle' onClick={handleBack}>
+				<Button shape='circle' onClick={() => navigate('/search')}>
 					<BackChevron />
 				</Button>
 				<span className='text-2xl'>Now Playing</span>
@@ -122,7 +119,7 @@ const Player = () => {
 				</Button>
 			</div>
 			<div className='flex justify-between items-center gap-x-3'>
-				<Volume />
+				<Mute />
 				<input
 					className='grow items-center rounded-xl appearance-none h-1 p-0 bg-transparent focus:outline-none focus:ring-1 focus:shadow-none'
 					id='volume-slider'
@@ -132,7 +129,7 @@ const Player = () => {
 					type='range'
 					onChange={handleVolumeChange}
 				/>
-				<Mute />
+				<Volume />
 			</div>
 			<div className='flex justify-between'>
 				<Button shape='circle'>
