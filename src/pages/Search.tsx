@@ -1,11 +1,16 @@
 import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
 import fetch from 'unfetch'
 import BackChevron from '../components/Icons/BackChevron'
 import KeyboardIcon from '../components/Icons/Keyboard'
 import SearchIcon from '../components/Icons/SearchIcon'
-
 type Image = {
+	link: string
+}
+
+type DownloadUrl = {
+	quality: string
 	link: string
 }
 
@@ -14,12 +19,14 @@ type Song = {
 	image: Array<Image>
 	name: string
 	year: number
+	downloadUrl: Array<DownloadUrl>
 }
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 const SearchPage = () => {
 	const inputRef = useRef<HTMLInputElement>(null)
+	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const { data, error } = useSWR(
 		searchValue
@@ -62,9 +69,22 @@ const SearchPage = () => {
 			<span className='text-lg text-dark-100'>Recently Searched</span>
 			<div className='flex flex-col gap-10'>
 				{data?.results?.map((song: Song) => {
-					const { image, name, id, year } = song
+					const { image, name, id, year, downloadUrl } = song
 					return (
-						<div key={id} className='flex items-center gap-3'>
+						<div
+							key={id}
+							className='flex items-center gap-3'
+							onClick={() => {
+								navigate('/player', {
+									state: {
+										image: image[2].link,
+										singer: year,
+										title: name,
+										trackSrc: downloadUrl[4]?.link
+									}
+								})
+							}}
+						>
 							<img
 								className={
 									'rotate-45 w-[60px] h-[60px] rounded-xl bg-cover row-span-2 mx-4'
