@@ -1,10 +1,10 @@
 const BackChevron = () => {
 	return (
 		<svg
-			width='11'
+			fill='none'
 			height='20'
 			viewBox='0 0 11 20'
-			fill='none'
+			width='11'
 			xmlns='http://www.w3.org/2000/svg'
 		>
 			<path
