@@ -1,4 +1,6 @@
-const Play = props => {
+import React from 'react'
+
+const Play = (props: React.SVGProps<SVGSVGElement>) => {
 	return (
 		<svg
 			fill='none'
