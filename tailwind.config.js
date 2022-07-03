@@ -15,7 +15,12 @@ module.exports = {
 		},
 		extend: {
 			boxShadow: {
-				lg: '-2px -2px 4px rgba(255, 255, 255, 0.5), 2px 2px 4px rgba(109, 129, 161, 0.25)'
+				lg: '-2px -2px 4px rgba(255, 255, 255, 0.5), 2px 2px 4px rgba(109, 129, 161, 0.25)',
+				inset:
+					'inset -8px -8px 6px rgba(255, 255, 255, 0.5), inset 8px 8px 10px rgba(109, 129, 161, 0.16)'
+			},
+			borderRadius: {
+				'4xl': '2rem'
 			}
 		}
 	},

@@ -13,6 +13,14 @@
 	.neumorphism {
 		@apply bg-gradient-to-br from-grey-50 to-grey-100 shadow-lg;
 	}
+
+	.neumorphism-pressed {
+		@apply bg-gradient-to-br from-grey-50 to-grey-100 shadow-inset;
+	}
+
+	.circle {
+		@apply w-1 h-1;
+	}
 }
 
 body {
