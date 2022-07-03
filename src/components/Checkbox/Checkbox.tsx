@@ -58,13 +58,7 @@ const Checkbox = (props: CheckboxProps) => {
 				tabIndex={0}
 				onKeyDown={handleKeyDown}
 			>
-				{checked && (
-					<Tick
-						fillClassName={fillClassName}
-						heightClassName={heightClassName}
-						widthClassName={widthClassName}
-					/>
-				)}
+				{checked && <Tick fillClassName={fillClassName} />}
 			</div>
 			{text}
 			<input
