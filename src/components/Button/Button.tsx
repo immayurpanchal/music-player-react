@@ -4,21 +4,32 @@ type ButtonProps = {
 	children: React.ReactNode
 	onClick?: () => void
 	action?: 'pressed' | 'default'
-	shape?: 'circle' | 'default'
+	shape?: 'circle' | 'square'
 	className?: string
+	size?: 'small' | 'large'
 }
 const Button = (props: ButtonProps) => {
-	const { children, onClick, action, shape, className } = props
+	const { children, onClick, action, shape, className, size } = props
 
-	const shapeClass = shape === 'circle' ? 'rounded-full' : 'rounded-4xl'
 	const actionClass =
 		action === 'pressed' ? 'neumorphism-pressed' : 'neumorphism'
 
+	const getSize = () => {
+		switch (size) {
+			case 'small':
+				return 'w-10 h-10'
+			case 'large':
+				return 'w-20 h-20'
+			default:
+				return 'w-16 h-16'
+		}
+	}
+
 	const buttonClass = classNames(
 		'flex justify-center items-center',
-		shapeClass,
-		actionClass,
-		{ 'w-12 h-12': shape === 'circle' },
+		{ 'rounded-full': shape === 'circle' },
+		{ [actionClass]: shape },
+		getSize(),
 		className
 	)
 	return (
