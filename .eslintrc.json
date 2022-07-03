@@ -151,16 +151,16 @@
 			{ "asyncArrow": "always", "named": "never" }
 		],
 		"array-bracket-spacing": ["error", "never"],
-		"space-in-parens": ["error", "never"],
-		"max-len": [
-			"error",
-			{
-				"code": 80,
-				"tabWidth": 2,
-				"comments": 80,
-				"ignoreTrailingComments": false,
-				"ignoreUrls": true
-			}
-		]
+		"space-in-parens": ["error", "never"]
+		// "max-len": [
+		// 	"error",
+		// 	{
+		// 		"code": 120,
+		// 		"tabWidth": 2,
+		// 		"comments": 120,
+		// 		"ignoreTrailingComments": false,
+		// 		"ignoreUrls": true
+		// 	}
+		// ]
 	}
 }
