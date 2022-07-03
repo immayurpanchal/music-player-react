@@ -72,10 +72,10 @@ const Player = () => {
 					<BackChevron />
 				</Button>
 				<span className='text-2xl'>Now Playing</span>
-				<Button shape='circle' onClick={handlePlaylistMenu}>
+				<Button onClick={handlePlaylistMenu}>
 					<Playlist />
 				</Button>
-				<Button shape='circle' onClick={handleMore}>
+				<Button onClick={handleMore}>
 					<More />
 				</Button>
 			</div>
@@ -88,7 +88,7 @@ const Player = () => {
 						alt='Poster'
 						className='absolute w-32 h-32 rounded-full'
 					/> */}
-					<audio ref={playerRef} autoPlay src={trackSrc} />
+					<audio ref={playerRef} src={trackSrc} />
 				</div>
 			</div>
 			<div className='flex flex-col text-center'>
@@ -97,31 +97,31 @@ const Player = () => {
 			</div>
 			<div className='flex justify-center gap-x-4 items-center'>
 				<Button shape='circle' onClick={handlePrevious}>
-					<Previous />
+					<Previous className='w-10 h-10' />
 				</Button>
 				{!isPlaying && (
-					<Button className='w-20 h-20' shape='circle' onClick={onPlay}>
-						<Play className='w-10 h-10' />
+					<Button shape='circle' size='large' onClick={onPlay}>
+						<Play className='w-12 h-12' />
 					</Button>
 				)}
 				{isPlaying && (
 					<Button
 						action='pressed'
-						className='w-20 h-20'
 						shape='circle'
+						size='large'
 						onClick={onPause}
 					>
-						<Pause />
+						<Pause className='w-12 h-12' />
 					</Button>
 				)}
 				<Button shape='circle' onClick={handleNext}>
-					<Next />
+					<Next className='w-10 h-10' />
 				</Button>
 			</div>
 			<div className='flex justify-between items-center gap-x-3'>
 				<Mute />
 				<input
-					className='grow items-center rounded-xl appearance-none h-1 p-0 bg-transparent focus:outline-none focus:ring-1 focus:shadow-none'
+					className='accent-dark-100 grow items-center rounded-xl h-2 p-0 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none bg-grey-100 shadow-inset-slider '
 					id='volume-slider'
 					max={100}
 					min={0}
