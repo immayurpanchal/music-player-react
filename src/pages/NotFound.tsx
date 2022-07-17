@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Checkbox from '../components/Checkbox/Checkbox'
+import Slider from '../components/Slider/Slider'
 
 const NotFound = () => {
 	const [checked, setChecked] = useState(false)
@@ -19,6 +20,9 @@ const NotFound = () => {
 					widthClassName='w-6'
 					onChange={handleChange}
 				/>
+				<div className='flex justify-between items-center gap-x-3'>
+					<Slider percent={50} />
+				</div>
 			</div>
 		</div>
 	)

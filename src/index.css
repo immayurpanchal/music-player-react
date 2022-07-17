@@ -17,6 +17,14 @@
 	}
 }
 
+/* input[type='range']::-webkit-slider-runnable-track {
+	background-color: green;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	color: orange;
+} */
 @layer components {
 	.neumorphism {
 		@apply shadow-lg;

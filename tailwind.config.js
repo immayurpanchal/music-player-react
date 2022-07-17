@@ -18,7 +18,7 @@ module.exports = {
 				lg: '-2px -2px 4px rgba(255, 255, 255, 0.5), 2px 2px 4px rgba(109, 129, 161, 0.25)',
 				inset:
 					'inset -4px -4px 6px rgba(255, 255, 255, 0.5), inset 4px 4px 6px rgba(109, 129, 161, 0.16)',
-				'inset-slider': 'inset 0px 4px 4px rgba(4, 31, 30, 0.25)'
+				'slider-track': 'inset 0px 4px 4px rgba(4, 31, 30, 0.25)'
 			},
 			borderRadius: {
 				'4xl': '2rem'
