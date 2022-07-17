@@ -69,25 +69,21 @@ const Player = () => {
 		<div className='grid gap-y-16'>
 			<div className='flex justify-between items-center'>
 				<Button shape='circle' onClick={() => navigate('/search')}>
-					<BackChevron />
+					<BackChevron fillClassName='fill-dark-100' />
 				</Button>
 				<span className='text-2xl'>Now Playing</span>
-				<Button onClick={handlePlaylistMenu}>
-					<Playlist />
-				</Button>
-				<Button onClick={handleMore}>
-					<More />
-				</Button>
+				<div className='flex gap-x-3'>
+					<Button onClick={handlePlaylistMenu}>
+						<Playlist />
+					</Button>
+					<Button onClick={handleMore}>
+						<More />
+					</Button>
+				</div>
 			</div>
 			<div className='justify-self-center'>
 				<div className='relative'>
 					<Disk image={image} />
-					{/* <RangeSlider /> */}
-					{/* <img
-						src={image}
-						alt='Poster'
-						className='absolute w-32 h-32 rounded-full'
-					/> */}
 					<audio ref={playerRef} src={trackSrc} />
 				</div>
 			</div>
@@ -97,11 +93,11 @@ const Player = () => {
 			</div>
 			<div className='flex justify-center gap-x-4 items-center'>
 				<Button shape='circle' onClick={handlePrevious}>
-					<Previous className='w-10 h-10' />
+					<Previous fillClassName='fill-dark-100' />
 				</Button>
 				{!isPlaying && (
 					<Button shape='circle' size='large' onClick={onPlay}>
-						<Play className='w-12 h-12' />
+						<Play fillClassName='fill-dark-100' />
 					</Button>
 				)}
 				{isPlaying && (
@@ -111,25 +107,22 @@ const Player = () => {
 						size='large'
 						onClick={onPause}
 					>
-						<Pause className='w-12 h-12' />
+						<Pause fillClassName='fill-dark-900' />
 					</Button>
 				)}
 				<Button shape='circle' onClick={handleNext}>
-					<Next className='w-10 h-10' />
+					<Next fillClassName='fill-dark-100' />
 				</Button>
 			</div>
 			<div className='flex justify-between items-center gap-x-3'>
-				<Mute />
+				<Mute className='w-6 h-6' fillClassName='fill-dark-100' />
 				<input
-					className='accent-dark-100 grow items-center rounded-xl h-2 p-0 bg-transparent focus:outline-none focus:ring-0 focus:shadow-none bg-grey-100 shadow-inset-slider '
-					id='volume-slider'
-					max={100}
-					min={0}
-					name='volume-slider'
+					id='volume'
+					name='volume'
 					type='range'
 					onChange={handleVolumeChange}
 				/>
-				<Volume />
+				<Volume className='w-6 h-6' fillClassName='fill-dark-100' />
 			</div>
 			<div className='flex justify-between'>
 				<Button shape='circle'>
