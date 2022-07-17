@@ -1,10 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
 import Button from '../components/Button/Button'
+import Card from '../components/Card/Card'
+import CardList from '../components/CardList/CardList'
 import SearchIcon from '../components/Icons/SearchIcon'
 import Settings from '../components/Icons/Settings'
 import Typography from '../components/Typography/Typography'
+import { Chart } from '../types/charts'
 import { Playlist } from '../types/playlist'
+import { Trending } from '../types/trending'
 
 const fetcher = (url: string) =>
 	fetch(url)
@@ -30,26 +34,42 @@ const Home = () => {
 				</span>
 			</div>
 			{/* Trending Section */}
-			<div>
-				<Typography type='subtitle'>Trending</Typography>
-				{/* Card */}
-				{data && !error && (
-					<div className='flex overflow-x-scroll py-8 gap-x-4'>
-						{data.top_playlists.map((currentItem: Playlist) => {
-							const { title, image, id } = currentItem
-							return (
-								<div
-									key={id}
-									className='flex flex-col gap-y-3 w-44 neumorphism p-2 rounded-2xl shrink-0'
-								>
-									<img alt={title} className='rounded-2xl' src={image} />
-									<Typography type='caption'>{title}</Typography>
-								</div>
-							)
-						})}
-					</div>
-				)}
-			</div>
+			{data && !error && (
+				<CardList title='Editorial Picks'>
+					{data.top_playlists.map((currentItem: Playlist) => {
+						const { title, image, id } = currentItem
+						return <Card key={id} image={image} title={title} />
+					})}
+				</CardList>
+			)}
+			{/* Charts */}
+			{data && !error && (
+				<CardList title='Top Charts'>
+					{data.charts.map((currentItem: Chart) => {
+						return (
+							<Card
+								key={currentItem.id}
+								image={currentItem.image}
+								title={currentItem.title}
+							/>
+						)
+					})}
+				</CardList>
+			)}
+			{/* Trending Items */}
+			{data && !error && (
+				<CardList title='Trending Now'>
+					{data.new_trending.map((currentItem: Trending) => {
+						return (
+							<Card
+								key={currentItem.id}
+								image={currentItem.image}
+								title={currentItem.title}
+							/>
+						)
+					})}
+				</CardList>
+			)}
 		</div>
 	)
 }
