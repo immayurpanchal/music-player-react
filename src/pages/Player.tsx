@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Button from '../components/Button/Button'
 import BackChevron from '../components/Icons/BackChevron'
 import Disk from '../components/Icons/Disk'
@@ -27,7 +27,6 @@ const Player = () => {
 	const { singer, title, trackSrc, image } = state as PlayerProps
 	const playerRef = useRef<HTMLAudioElement>(null)
 	const [isPlaying, setIsPlaying] = useState(true)
-	const navigate = useNavigate()
 
 	const onPlay = () => {
 		if (playerRef.current) {
@@ -68,7 +67,7 @@ const Player = () => {
 	return (
 		<div className='grid gap-y-16'>
 			<div className='flex justify-between items-center'>
-				<Button shape='circle' onClick={() => navigate('/search')}>
+				<Button shape='circle' onClick={() => history.back()}>
 					<BackChevron fillClassName='fill-dark-100' />
 				</Button>
 				<span className='text-2xl'>Now Playing</span>
