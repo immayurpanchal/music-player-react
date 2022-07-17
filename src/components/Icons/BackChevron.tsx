@@ -2,7 +2,7 @@ import React from 'react'
 import { IconProps } from './types/types'
 
 const BackChevron = (props: React.SVGProps<SVGSVGElement> & IconProps) => {
-	const { fillClassName } = props
+	const { fillClassName, ...rest } = props
 	return (
 		<svg
 			fill='none'
@@ -10,7 +10,7 @@ const BackChevron = (props: React.SVGProps<SVGSVGElement> & IconProps) => {
 			viewBox='0 0 11 20'
 			width='100%'
 			xmlns='http://www.w3.org/2000/svg'
-			{...props}
+			{...rest}
 		>
 			<path
 				className={fillClassName}
