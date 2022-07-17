@@ -19,17 +19,16 @@ const Button = (props: ButtonProps) => {
 			case 'small':
 				return 'w-10 h-10'
 			case 'large':
-				return 'w-20 h-20'
+				return 'w-24 h-24 p-6'
 			default:
-				return 'w-16 h-16'
+				return 'w-14 h-14 p-4'
 		}
 	}
 
 	const buttonClass = classNames(
 		'flex justify-center items-center',
-		{ 'rounded-full': shape === 'circle' },
+		{ [`rounded-full ${getSize()}`]: shape === 'circle' },
 		{ [actionClass]: shape },
-		getSize(),
 		className
 	)
 	return (
