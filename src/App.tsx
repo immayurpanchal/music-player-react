@@ -4,6 +4,7 @@ import SearchPage from './pages/Search'
 import Player from './pages/Player'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
+import SongList from './pages/SongList'
 
 const App = () => {
 	return (
@@ -12,6 +13,7 @@ const App = () => {
 				<Route element={<SearchPage />} path='/search' />
 				<Route element={<Player />} path='/player' />
 				<Route element={<Home />} path='/' />
+				<Route element={<SongList />} path='/list' />
 				<Route element={<NotFound />} path='/404' />
 			</Routes>
 		</BrowserRouter>
