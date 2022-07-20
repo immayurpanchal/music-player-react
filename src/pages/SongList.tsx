@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
+import Button from '../components/Button/Button'
+import More from '../components/Icons/More'
 import Polygon from '../components/Polygon/Polygon'
 import { Song } from '../types/song'
 import { PlayerProps } from './Player'
@@ -36,10 +38,11 @@ const SongList = () => {
 	return (
 		<>
 			{data.songs.map((currentSong: Song) => {
-				const { name, downloadUrl, image, artist, id } = currentSong
+				const { name, downloadUrl, image, artist, id, year } = currentSong
 				return (
 					<div
 						key={id}
+						className='rounded-2xl gap-x-3 grid grid-cols-[auto_minmax(100px,_1fr)_auto] items-center p-3 '
 						onClick={() =>
 							navigate('/player', {
 								state: {
@@ -52,7 +55,14 @@ const SongList = () => {
 						}
 					>
 						<Polygon id={id} image={image?.[2]?.link || ''} />
-						{name}
+						<div className='flex flex-col'>
+							{/* TODO: Use Typography component  */}
+							<span className='truncate'>{name}</span>
+							<span className='text-dark-100'>{year}</span>
+						</div>
+						<Button className='w-6 h-6'>
+							<More fillClassName='fill-dark-100' />
+						</Button>
 					</div>
 				)
 			})}
