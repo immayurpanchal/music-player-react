@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
-import fetch from 'unfetch'
+import Button from '../components/Button/Button'
 import BackChevron from '../components/Icons/BackChevron'
 import KeyboardIcon from '../components/Icons/Keyboard'
 import SearchIcon from '../components/Icons/SearchIcon'
+
 type Image = {
 	link: string
 }
@@ -42,15 +43,17 @@ const SearchPage = () => {
 	return (
 		<div className='flex flex-col gap-y-7 grid-flow-row'>
 			<div className='flex justify-between items-center'>
-				<div className='w-12 h-12 rounded-full flex justify-center items-center neumorphism'>
-					<BackChevron />
-				</div>
+				<Button shape='circle' onClick={() => history.back()}>
+					<BackChevron fillClassName='fill-dark-100' />
+				</Button>
 				<span className='font-semibold text-2xl'>Search</span>
-				<KeyboardIcon />
+				<Button>
+					<KeyboardIcon />
+				</Button>
 			</div>
 			<div className='relative'>
 				<span className='absolute inset-y-4 pl-6 text-gray-500 sm:text-sm pointer-events-none'>
-					<SearchIcon />
+					<SearchIcon fillClassName='fill-dark-100' />
 				</span>
 				<form
 					onSubmit={e => {
