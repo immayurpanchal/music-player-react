@@ -19,6 +19,11 @@ const Home = () => {
 	const navigate = useNavigate()
 	const { data, error } = useSWR('https://saavn.me/home', fetcher)
 
+	const handleClick = (item: Playlist | Chart | Trending) => {
+		const { id, type } = item
+		navigate('/list', { state: { id, type } })
+	}
+
 	return (
 		<div className='flex flex-col'>
 			{/* Header */}
@@ -38,7 +43,14 @@ const Home = () => {
 				<CardList title='Editorial Picks'>
 					{data.top_playlists.map((currentItem: Playlist) => {
 						const { title, image, id } = currentItem
-						return <Card key={id} image={image} title={title} />
+						return (
+							<Card
+								key={id}
+								image={image}
+								title={title}
+								onClick={() => handleClick(currentItem)}
+							/>
+						)
 					})}
 				</CardList>
 			)}
