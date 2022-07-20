@@ -76,7 +76,7 @@ const Player = () => {
 						<Playlist />
 					</Button>
 					<Button onClick={handleMore}>
-						<More />
+						<More fillClassName='fill-dark-100' />
 					</Button>
 				</div>
 			</div>
