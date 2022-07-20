@@ -15,7 +15,7 @@ import Random from '../components/Icons/Random'
 import Repeat from '../components/Icons/Repeat'
 import Volume from '../components/Icons/Volume'
 
-type PlayerProps = {
+export type PlayerProps = {
 	singer: string
 	title: string
 	trackSrc: string
