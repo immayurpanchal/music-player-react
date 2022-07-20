@@ -1,8 +1,9 @@
 import classNames from 'classnames'
+import React from 'react'
 
 type ButtonProps = {
 	children: React.ReactNode
-	onClick?: () => void
+	onClick?: (e: React.MouseEvent<HTMLElement>) => void
 	action?: 'pressed' | 'default'
 	shape?: 'circle' | 'square'
 	className?: string
@@ -31,8 +32,13 @@ const Button = (props: ButtonProps) => {
 		{ [actionClass]: shape },
 		className
 	)
+
+	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+		navigator.vibrate(100)
+		onClick && onClick(e)
+	}
 	return (
-		<button className={buttonClass} onClick={onClick}>
+		<button className={buttonClass} onClick={handleClick}>
 			{children}
 		</button>
 	)
