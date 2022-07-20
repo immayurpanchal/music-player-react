@@ -51,13 +51,6 @@ const SongList = () => {
 							} as { state: PlayerProps })
 						}
 					>
-						{/* <img
-							alt={name}
-							height='48px'
-							src={image?.[2]?.link}
-							style={{ clipPath: `url(#myClipPath-${id})` }}
-							width='44px'
-						/> */}
 						<Polygon id={id} image={image?.[2]?.link || ''} />
 						{name}
 					</div>
