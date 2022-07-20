@@ -75,7 +75,7 @@ const Player = () => {
 					<Button onClick={handlePlaylistMenu}>
 						<Playlist />
 					</Button>
-					<Button onClick={handleMore}>
+					<Button className='w-6 h-6' onClick={handleMore}>
 						<More fillClassName='fill-dark-100' />
 					</Button>
 				</div>
