@@ -11,6 +11,15 @@
 		"format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
 		"prepare": "husky install"
 	},
+	"lint-staged": {
+		"src/**/*.{js,jsx,ts,tsx,json}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"src/**/*.{js,jsx,ts,tsx,css,md,json}": [
+			"prettier --write --config ./.prettierrc"
+		]
+	},
 	"dependencies": {
 		"classnames": "^2.3.1",
 		"react": "^18.0.0",
