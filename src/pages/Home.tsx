@@ -21,7 +21,7 @@ const Home = () => {
 
 	const handleClick = (item: Playlist | Chart | Trending) => {
 		const { id, type } = item
-		navigate('/list', { state: { id, type } })
+		navigate('/details', { state: { id, type } })
 	}
 
 	return (
@@ -30,10 +30,10 @@ const Home = () => {
 			<div className='flex justify-between'>
 				<Typography type='title'>Retro Music</Typography>
 				<span className='flex gap-x-3'>
-					<Button className='w-6 h-6' onClick={() => navigate('/search')}>
+					<Button className='h-6 w-6' onClick={() => navigate('/search')}>
 						<SearchIcon fillClassName='fill-dark-100' />
 					</Button>
-					<Button className='w-6 h-6'>
+					<Button className='h-6 w-6'>
 						<Settings fillClassName='fill-dark-100' />
 					</Button>
 				</span>
@@ -43,14 +43,7 @@ const Home = () => {
 				<CardList title='Editorial Picks'>
 					{data.top_playlists.map((currentItem: Playlist) => {
 						const { title, image, id } = currentItem
-						return (
-							<Card
-								key={id}
-								image={image}
-								title={title}
-								onClick={() => handleClick(currentItem)}
-							/>
-						)
+						return <Card key={id} image={image} title={title} onClick={() => handleClick(currentItem)} />
 					})}
 				</CardList>
 			)}
@@ -58,13 +51,7 @@ const Home = () => {
 			{data && !error && (
 				<CardList title='Top Charts'>
 					{data.charts.map((currentItem: Chart) => {
-						return (
-							<Card
-								key={currentItem.id}
-								image={currentItem.image}
-								title={currentItem.title}
-							/>
-						)
+						return <Card key={currentItem.id} image={currentItem.image} title={currentItem.title} />
 					})}
 				</CardList>
 			)}
@@ -72,13 +59,7 @@ const Home = () => {
 			{data && !error && (
 				<CardList title='Trending Now'>
 					{data.new_trending.map((currentItem: Trending) => {
-						return (
-							<Card
-								key={currentItem.id}
-								image={currentItem.image}
-								title={currentItem.title}
-							/>
-						)
+						return <Card key={currentItem.id} image={currentItem.image} title={currentItem.title} />
 					})}
 				</CardList>
 			)}
