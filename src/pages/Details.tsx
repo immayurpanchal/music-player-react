@@ -7,6 +7,7 @@ import More from '../components/Icons/More'
 import Playlist from '../components/Icons/Playlist'
 import Typography from '../components/Typography/Typography'
 import { Song } from '../types/song'
+import { getMins, getValueInK } from '../utils/utils'
 
 type Props = {
 	type: 'playlist' | 'album'
@@ -68,7 +69,7 @@ const Details = () => {
 			{/* Cover Details */}
 			<div>
 				<Typography type='subtitle'>{data.name}</Typography>
-				<Typography type='subtitle'>{data.fanCount}</Typography>
+				<Typography type='subtitle'>{getValueInK(data.fanCount)}</Typography>
 			</div>
 			<div className='flex justify-between'>
 				<Button shape='square'>Shuffle</Button>
@@ -90,7 +91,7 @@ const Details = () => {
 							<div className='flex flex-col'>
 								<Typography type='caption'>{song.name}</Typography>
 								<Typography className='text-dark-100' type='subCaption'>
-									{song.duration}
+									{getMins(Number(song.duration))}
 								</Typography>
 							</div>
 							<Button className='h-6 w-6'>
