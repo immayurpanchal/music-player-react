@@ -1,17 +1,13 @@
+import React from 'react'
+
 type DiskProps = {
 	image: string
 }
 
-const Disk = (props: DiskProps) => {
-	const { image } = props
+const Disk = (props: React.SVGProps<SVGSVGElement> & DiskProps) => {
+	const { image, ...rest } = props
 	return (
-		<svg
-			fill='none'
-			height='280'
-			viewBox='0 0 280 280'
-			width='280'
-			xmlns='http://www.w3.org/2000/svg'
-		>
+		<svg fill='none' height='280' viewBox='0 0 280 280' width='280' xmlns='http://www.w3.org/2000/svg' {...rest}>
 			<g filter='url(#filter0_d_915_6913)'>
 				<circle cx='140' cy='134' fill='url(#paint0_linear_915_6913)' r='130' />
 				<circle cx='140' cy='134' fill='url(#paint1_linear_915_6913)' r='124' />
@@ -41,30 +37,11 @@ const Disk = (props: DiskProps) => {
 					<feOffset dy='6' />
 					<feGaussianBlur stdDeviation='5' />
 					<feComposite in2='hardAlpha' operator='out' />
-					<feColorMatrix
-						type='matrix'
-						values='0 0 0 0 0.0156863 0 0 0 0 0.121569 0 0 0 0 0.117647 0 0 0 0.25 0'
-					/>
-					<feBlend
-						in2='BackgroundImageFix'
-						mode='normal'
-						result='effect1_dropShadow_915_6913'
-					/>
-					<feBlend
-						in='SourceGraphic'
-						in2='effect1_dropShadow_915_6913'
-						mode='normal'
-						result='shape'
-					/>
+					<feColorMatrix type='matrix' values='0 0 0 0 0.0156863 0 0 0 0 0.121569 0 0 0 0 0.117647 0 0 0 0.25 0' />
+					<feBlend in2='BackgroundImageFix' mode='normal' result='effect1_dropShadow_915_6913' />
+					<feBlend in='SourceGraphic' in2='effect1_dropShadow_915_6913' mode='normal' result='shape' />
 				</filter>
-				<linearGradient
-					gradientUnits='userSpaceOnUse'
-					id='paint0_linear_915_6913'
-					x1='83'
-					x2='212'
-					y1='20'
-					y2='244'
-				>
+				<linearGradient gradientUnits='userSpaceOnUse' id='paint0_linear_915_6913' x1='83' x2='212' y1='20' y2='244'>
 					<stop stopColor='#041F1E' />
 					<stop offset='0.512321' stopColor='#596767' />
 					<stop offset='1' stopColor='#041F1E' />
@@ -141,17 +118,12 @@ const Disk = (props: DiskProps) => {
 					<stop offset='0.512321' stopColor='#596767' />
 					<stop offset='1' stopColor='#041F1E' />
 				</linearGradient>
-				<pattern
-					height={280}
-					id='img'
-					patternUnits='userSpaceOnUse'
-					viewBox='0 0 280 280'
-					width={280}
-				>
+				<pattern height={280} id='img' patternUnits='userSpaceOnUse' viewBox='0 0 280 280' width={280}>
 					<image
-						height={280}
+						height={150}
 						radius='100%'
-						width={280}
+						style={{ transform: 'translate(64px, 58px)' }}
+						width={150}
 						xlinkHref={image}
 					></image>
 				</pattern>
