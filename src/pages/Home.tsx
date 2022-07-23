@@ -51,7 +51,14 @@ const Home = () => {
 			{data && !error && (
 				<CardList title='Top Charts'>
 					{data.charts.map((currentItem: Chart) => {
-						return <Card key={currentItem.id} image={currentItem.image} title={currentItem.title} />
+						return (
+							<Card
+								key={currentItem.id}
+								image={currentItem.image}
+								title={currentItem.title}
+								onClick={() => handleClick(currentItem)}
+							/>
+						)
 					})}
 				</CardList>
 			)}
@@ -59,7 +66,14 @@ const Home = () => {
 			{data && !error && (
 				<CardList title='Trending Now'>
 					{data.new_trending.map((currentItem: Trending) => {
-						return <Card key={currentItem.id} image={currentItem.image} title={currentItem.title} />
+						return (
+							<Card
+								key={currentItem.id}
+								image={currentItem.image}
+								title={currentItem.title}
+								onClick={() => handleClick(currentItem)}
+							/>
+						)
 					})}
 				</CardList>
 			)}
