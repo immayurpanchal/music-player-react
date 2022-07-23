@@ -3,6 +3,7 @@ module.exports = {
 	content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
 	theme: {
 		colors: {
+			white: '#fff',
 			dark: {
 				100: '#6D81A1',
 				900: '#041F1E'
@@ -16,8 +17,7 @@ module.exports = {
 		extend: {
 			boxShadow: {
 				lg: '-2px -2px 4px rgba(255, 255, 255, 0.5), 2px 2px 4px rgba(109, 129, 161, 0.25)',
-				inset:
-					'inset -4px -4px 6px rgba(255, 255, 255, 0.5), inset 4px 4px 6px rgba(109, 129, 161, 0.16)',
+				inset: 'inset -4px -4px 6px rgba(255, 255, 255, 0.5), inset 4px 4px 6px rgba(109, 129, 161, 0.16)',
 				'inset-slider': 'inset 0px 4px 4px rgba(4, 31, 30, 0.25)'
 			},
 			borderRadius: {
