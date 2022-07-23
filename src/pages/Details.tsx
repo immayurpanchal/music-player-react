@@ -38,6 +38,8 @@ const Details = () => {
 
 	const songs = data.songs as Array<Song>
 
+	const imageUrl = data.image?.[2]?.link
+
 	return (
 		<div>
 			{/* Header */}
@@ -57,11 +59,11 @@ const Details = () => {
 			</div>
 			{/* Cover Image section */}
 			<div className='relative h-72 w-full py-5'>
-				<Disk
-					className='absolute top-[calc(50%-104px)] left-1/3 h-52 w-52'
-					image='https://c.saavncdn.com/editorial/HimeshKaSurroor_20220720172817.jpg'
-				/>
-				<div className='absolute z-10 h-60 w-60 rounded-xl bg-[url("https://c.saavncdn.com/editorial/HimeshKaSurroor_20220720172817.jpg")] bg-cover'></div>
+				<Disk className='absolute top-[calc(50%-104px)] left-1/3 h-52 w-52' image={imageUrl} />
+				<div
+					className='absolute z-10 h-60 w-60 rounded-xl bg-cover'
+					style={{ backgroundImage: `url(${imageUrl})` }}
+				></div>
 			</div>
 			{/* Cover Details */}
 			<div>
