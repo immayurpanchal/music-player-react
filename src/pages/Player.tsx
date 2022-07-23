@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import useSWR from 'swr'
 import Button from '../components/Button/Button'
 import BackChevron from '../components/Icons/BackChevron'
 import Disk from '../components/Icons/Disk'
@@ -14,6 +15,7 @@ import Previous from '../components/Icons/Previous'
 import Random from '../components/Icons/Random'
 import Repeat from '../components/Icons/Repeat'
 import Volume from '../components/Icons/Volume'
+import { Song } from '../types/song'
 
 export type PlayerProps = {
 	singer: string
@@ -22,11 +24,17 @@ export type PlayerProps = {
 	image: string
 }
 
+const fetcher = (url: string) =>
+	fetch(url)
+		.then(r => r.json())
+		.then(r => r.results)
+
 const Player = () => {
 	const { state } = useLocation()
-	const { singer, title, trackSrc, image } = state as PlayerProps
+	const { id } = state as { id: string }
+	const { data, error } = useSWR(`https://saavn.me/songs?id=${id}`, fetcher)
 	const playerRef = useRef<HTMLAudioElement>(null)
-	const [isPlaying, setIsPlaying] = useState(true)
+	const [isPlaying, setIsPlaying] = useState(false)
 
 	const onPlay = () => {
 		if (playerRef.current) {
@@ -64,9 +72,27 @@ const Player = () => {
 		}
 	}
 
+	useEffect(() => {
+		if (data && !isPlaying) {
+			onPlay()
+		}
+	}, [data])
+
+	if (error) {
+		return <div>failed to load</div>
+	}
+
+	if (!data) {
+		return <div>Loading...</div>
+	}
+
+	const { artist: singer, name: title, downloadUrl, image: imageUrl } = data as Song
+	const trackSrc = downloadUrl?.[4]?.link
+	const image = imageUrl?.[2]?.link
+
 	return (
 		<div className='grid gap-y-16'>
-			<div className='flex justify-between items-center'>
+			<div className='flex items-center justify-between'>
 				<Button shape='circle' onClick={() => history.back()}>
 					<BackChevron fillClassName='fill-dark-100' />
 				</Button>
@@ -75,7 +101,7 @@ const Player = () => {
 					<Button onClick={handlePlaylistMenu}>
 						<Playlist />
 					</Button>
-					<Button className='w-6 h-6' onClick={handleMore}>
+					<Button className='h-6 w-6' onClick={handleMore}>
 						<More fillClassName='fill-dark-100' />
 					</Button>
 				</div>
@@ -90,7 +116,7 @@ const Player = () => {
 				<span className='text-xl'>{title}</span>
 				<span className='text-xs'>{singer}</span>
 			</div>
-			<div className='flex justify-center gap-x-4 items-center'>
+			<div className='flex items-center justify-center gap-x-4'>
 				<Button shape='circle' onClick={handlePrevious}>
 					<Previous fillClassName='fill-dark-100' />
 				</Button>
@@ -100,12 +126,7 @@ const Player = () => {
 					</Button>
 				)}
 				{isPlaying && (
-					<Button
-						action='pressed'
-						shape='circle'
-						size='large'
-						onClick={onPause}
-					>
+					<Button action='pressed' shape='circle' size='large' onClick={onPause}>
 						<Pause fillClassName='fill-dark-900' />
 					</Button>
 				)}
@@ -113,15 +134,10 @@ const Player = () => {
 					<Next fillClassName='fill-dark-100' />
 				</Button>
 			</div>
-			<div className='flex justify-between items-center gap-x-3'>
-				<Mute className='w-6 h-6' fillClassName='fill-dark-100' />
-				<input
-					id='volume'
-					name='volume'
-					type='range'
-					onChange={handleVolumeChange}
-				/>
-				<Volume className='w-6 h-6' fillClassName='fill-dark-100' />
+			<div className='flex items-center justify-between gap-x-3'>
+				<Mute className='h-6 w-6' fillClassName='fill-dark-100' />
+				<input id='volume' name='volume' type='range' onChange={handleVolumeChange} />
+				<Volume className='h-6 w-6' fillClassName='fill-dark-100' />
 			</div>
 			<div className='flex justify-between'>
 				<Button shape='circle'>
