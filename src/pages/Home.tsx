@@ -27,7 +27,7 @@ const Home = () => {
 	}
 
 	return (
-		<div className='flex flex-col gap-y-8'>
+		<div className='flex flex-col'>
 			{/* Header */}
 			<div className='flex justify-between'>
 				<Typography type='title'>Retro Music</Typography>
@@ -62,7 +62,7 @@ const Home = () => {
 			</div>
 			{/* Trending Section */}
 			{data && !error && (
-				<CardList title='Editorial Picks'>
+				<CardList cardWrapperClassName='py-8' title='Editorial Picks'>
 					{data.top_playlists.map((currentItem: Playlist) => {
 						const { title, image, id } = currentItem
 						return <Card key={id} image={image} title={title} onClick={() => handleClick(currentItem)} />
@@ -71,7 +71,7 @@ const Home = () => {
 			)}
 			{/* Charts */}
 			{data && !error && (
-				<CardList title='Top Charts'>
+				<CardList cardWrapperClassName='py-8' title='Top Charts'>
 					{data.charts.map((currentItem: Chart) => {
 						return (
 							<Card
@@ -86,7 +86,7 @@ const Home = () => {
 			)}
 			{/* Trending Items */}
 			{data && !error && (
-				<CardList title='Trending Now'>
+				<CardList cardWrapperClassName='py-8' title='Trending Now'>
 					{data.new_trending.map((currentItem: Trending) => {
 						return (
 							<Card
