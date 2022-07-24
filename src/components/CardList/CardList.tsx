@@ -8,7 +8,7 @@ const CardList = (props: PropsWithChildren & Props) => {
 	return (
 		<div>
 			<Typography type='subtitle'>{title}</Typography>
-			<div className='flex overflow-x-scroll py-8 gap-x-4'>{children}</div>
+			<div className='flex gap-x-4 overflow-x-scroll pt-8'>{children}</div>
 		</div>
 	)
 }
