@@ -3,8 +3,10 @@ import useSWR from 'swr'
 import Button from '../components/Button/Button'
 import Card from '../components/Card/Card'
 import CardList from '../components/CardList/CardList'
+import AvatarCartoon from '../components/Icons/AvatarCartoon'
 import SearchIcon from '../components/Icons/SearchIcon'
 import Settings from '../components/Icons/Settings'
+import Polygon from '../components/Polygon/Polygon'
 import Typography from '../components/Typography/Typography'
 import { Chart } from '../types/charts'
 import { Playlist } from '../types/playlist'
@@ -37,6 +39,26 @@ const Home = () => {
 						<Settings fillClassName='fill-dark-100' />
 					</Button>
 				</span>
+			</div>
+			{/* Cartoon Avatar Card */}
+			<div>
+				<div className='neumorphism relative mt-14  w-full rounded-2xl px-5 py-4'>
+					<div className='absolute bottom-0 left-0 z-10 overflow-hidden rounded-2xl'>
+						<AvatarCartoon />
+					</div>
+					<div className='flex flex-col items-end'>
+						<Polygon
+							height={56}
+							id={'home-avatar'}
+							image={'https://c.saavncdn.com/editorial/logo/JhakaasRemakes_20220105155217.jpg'}
+							width={56}
+						/>
+						<Typography type='subtitle'>Good Morning</Typography>
+						<Typography className='text-dark-100' type='subCaption'>
+							Mayur Panchal
+						</Typography>
+					</div>
+				</div>
 			</div>
 			{/* Trending Section */}
 			{data && !error && (
