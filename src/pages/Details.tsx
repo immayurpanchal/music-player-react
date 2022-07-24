@@ -89,7 +89,7 @@ const Details = () => {
 							className='grid grid-cols-[auto_minmax(187px,_1fr)_auto] gap-x-4'
 							onClick={() => navigate('/player', { state: { id: song.id } })}
 						>
-							<Typography>{index.toString().padStart(2, '0')}</Typography>
+							<Typography>{(index + 1).toString().padStart(2, '0')}</Typography>
 							<div className='flex flex-col'>
 								<Typography type='caption'>{song.name}</Typography>
 								<Typography className='text-dark-100' type='subCaption'>
