@@ -67,9 +67,11 @@ const Details = () => {
 				></div>
 			</div>
 			{/* Cover Details */}
-			<div>
+			<div className='flex flex-col'>
 				<Typography type='subtitle'>{data.name}</Typography>
-				<Typography type='subtitle'>{getValueInK(data.fanCount)}</Typography>
+				<Typography className='gap-y-1  text-sm text-dark-100' type='caption'>
+					{getValueInK(data.fanCount)}
+				</Typography>
 			</div>
 			<div className='flex justify-between'>
 				<Button shape='square'>Shuffle</Button>
