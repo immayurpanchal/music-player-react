@@ -108,7 +108,7 @@ const Player = () => {
 			</div>
 			<div className='justify-self-center'>
 				<div className='relative'>
-					<Disk image={image} />
+					<Disk image={image || ''} />
 					<audio ref={playerRef} src={trackSrc} />
 				</div>
 			</div>
