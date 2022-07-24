@@ -1,26 +1,28 @@
 import classNames from 'classnames'
-import { PropsWithChildren } from 'react'
+import { HTMLAttributes, PropsWithChildren } from 'react'
 type Props = {
-	type?: 'title' | 'subtitle' | 'caption'
+	type?: 'title' | 'subtitle' | 'caption' | 'subCaption'
 }
 
-const Typography = (props: PropsWithChildren & Props) => {
-	const { children, type } = props
+const Typography = (props: PropsWithChildren & Props & HTMLAttributes<HTMLSpanElement>) => {
+	const { children, type, className } = props
 
 	const getType = () => {
 		switch (type) {
-			case 'title':
+			case 'title': // 24px
 				return 'font-bold text-2xl'
-			case 'subtitle':
+			case 'subtitle': // 20px
 				return 'text-xl'
-			case 'caption':
+			case 'caption': // 14px
 				return 'text-sm'
+			case 'subCaption': // 12px
+				return 'text-xs'
 			default:
 				return 'text-base'
 		}
 	}
 
-	const typographyClass = classNames(getType())
+	const typographyClass = classNames(getType(), className)
 
 	return <span className={typographyClass}>{children}</span>
 }
