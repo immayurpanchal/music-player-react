@@ -12,14 +12,7 @@ type CheckboxProps = {
 }
 
 const Checkbox = (props: CheckboxProps) => {
-	const {
-		checked = false,
-		widthClassName = '',
-		heightClassName = '',
-		fillClassName,
-		onChange,
-		text
-	} = props
+	const { checked = false, widthClassName = '', heightClassName = '', fillClassName, onChange, text } = props
 
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -48,25 +41,16 @@ const Checkbox = (props: CheckboxProps) => {
 
 	return (
 		<label
-			className='text-base select-none relative flex items-center gap-x-2'
+			className='relative flex select-none items-center gap-x-2 text-base'
 			htmlFor='checkbox-custom'
 			id='checkbox'
 			onClick={handleClick}
 		>
-			<div
-				className={containerClassName}
-				tabIndex={0}
-				onKeyDown={handleKeyDown}
-			>
+			<div className={containerClassName} tabIndex={0} onKeyDown={handleKeyDown}>
 				{checked && <Tick fillClassName={fillClassName} />}
 			</div>
 			{text}
-			<input
-				ref={inputRef}
-				className='hidden absolute'
-				name='checkbox-custom'
-				type='checkbox'
-			/>
+			<input ref={inputRef} className='absolute hidden' name='checkbox-custom' type='checkbox' />
 		</label>
 	)
 }

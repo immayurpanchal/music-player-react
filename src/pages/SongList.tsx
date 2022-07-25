@@ -21,9 +21,7 @@ const SongList = () => {
 	const navigate = useNavigate()
 	const { type, id } = location.state as Props
 	const { data, error } = useSWR(
-		type === 'playlist'
-			? `https://saavn.me/playlists?id=${id}`
-			: `https://saavn.me/albums?id=${id}`,
+		type === 'playlist' ? `https://saavn.me/playlists?id=${id}` : `https://saavn.me/albums?id=${id}`,
 		fetcher
 	)
 
@@ -42,7 +40,7 @@ const SongList = () => {
 				return (
 					<div
 						key={id}
-						className='rounded-2xl gap-x-3 grid grid-cols-[auto_minmax(100px,_1fr)_auto] items-center p-3 '
+						className='grid grid-cols-[auto_minmax(100px,_1fr)_auto] items-center gap-x-3 rounded-2xl p-3 '
 						onClick={() =>
 							navigate('/player', {
 								state: {
@@ -60,7 +58,7 @@ const SongList = () => {
 							<span className='truncate'>{name}</span>
 							<span className='text-dark-100'>{year}</span>
 						</div>
-						<Button className='w-6 h-6'>
+						<Button className='h-6 w-6'>
 							<More fillClassName='fill-dark-100' />
 						</Button>
 					</div>

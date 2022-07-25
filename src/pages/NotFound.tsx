@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Checkbox from '../components/Checkbox/Checkbox'
+
 const NotFound = () => {
 	const [checked, setChecked] = useState(false)
 	const handleChange = (checked: boolean) => {
@@ -18,6 +19,7 @@ const NotFound = () => {
 					widthClassName='w-6'
 					onChange={handleChange}
 				/>
+				<div className='flex items-center justify-between gap-x-3'></div>
 			</div>
 		</div>
 	)
