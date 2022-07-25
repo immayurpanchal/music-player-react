@@ -1,12 +1,13 @@
 type Props = {
 	image: string
 	id: number | string
+	width?: number
+	height?: number
 }
 
 const Polygon = (props: Props) => {
-	const { id, image } = props
-	const width = 48
-	const height = 48
+	const { id, image, width = 48, height = 48 } = props
+
 	return (
 		<svg
 			fill='none'
@@ -30,12 +31,7 @@ const Polygon = (props: Props) => {
 					viewBox={`0 0 ${width} ${height}`}
 					width={width}
 				>
-					<image
-						height={height}
-						radius='100%'
-						width={width}
-						xlinkHref={image}
-					></image>
+					<image height={height} radius='100%' width={width} xlinkHref={image}></image>
 				</pattern>
 			</defs>
 		</svg>
