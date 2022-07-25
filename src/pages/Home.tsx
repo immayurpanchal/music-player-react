@@ -41,7 +41,8 @@ const Home = () => {
 				</span>
 			</div>
 			{/* Cartoon Avatar Card */}
-			<div>
+			<div className='py-8'>
+				{/* Neumorphism Card with Avatar */}
 				<div className='neumorphism relative mt-14  w-full rounded-2xl px-5 py-4'>
 					<div className='absolute bottom-0 left-0 z-10 overflow-hidden rounded-2xl'>
 						<AvatarCartoon />
