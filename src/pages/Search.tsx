@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
-import fetch from 'unfetch'
+import Button from '../components/Button/Button'
 import BackChevron from '../components/Icons/BackChevron'
 import KeyboardIcon from '../components/Icons/Keyboard'
 import SearchIcon from '../components/Icons/SearchIcon'
+
 type Image = {
 	link: string
 }
@@ -29,9 +30,7 @@ const SearchPage = () => {
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const { data, error } = useSWR(
-		searchValue
-			? `https://saavn.me/search/songs?query=${searchValue}&page=1&limit=5`
-			: '',
+		searchValue ? `https://saavn.me/search/songs?query=${searchValue}&page=1&limit=5` : '',
 		fetcher
 	)
 
@@ -40,17 +39,19 @@ const SearchPage = () => {
 	}
 
 	return (
-		<div className='flex flex-col gap-y-7 grid-flow-row'>
-			<div className='flex justify-between items-center'>
-				<div className='w-12 h-12 rounded-full flex justify-center items-center neumorphism'>
-					<BackChevron />
-				</div>
-				<span className='font-semibold text-2xl'>Search</span>
-				<KeyboardIcon />
+		<div className='flex grid-flow-row flex-col gap-y-7'>
+			<div className='flex items-center justify-between'>
+				<Button shape='circle' onClick={() => history.back()}>
+					<BackChevron fillClassName='fill-dark-100' />
+				</Button>
+				<span className='text-2xl font-semibold'>Search</span>
+				<Button>
+					<KeyboardIcon />
+				</Button>
 			</div>
 			<div className='relative'>
-				<span className='absolute inset-y-4 pl-6 text-gray-500 sm:text-sm pointer-events-none'>
-					<SearchIcon />
+				<span className='text-gray-500 pointer-events-none absolute inset-y-4 pl-6 sm:text-sm'>
+					<SearchIcon fillClassName='fill-dark-100' />
 				</span>
 				<form
 					onSubmit={e => {
@@ -60,7 +61,7 @@ const SearchPage = () => {
 				>
 					<input
 						ref={inputRef}
-						className='py-3 pl-14 rounded-2xl pr-4 bg-transparent w-full neumorphism focus-visible:outline-0 text-lg placeholder:text-dark-100 '
+						className='bg-transparent neumorphism w-full rounded-2xl py-3 pl-14 pr-4 text-lg placeholder:text-dark-100 focus-visible:outline-0 '
 						placeholder='Search Your Music'
 						type='search'
 					/>
@@ -86,9 +87,7 @@ const SearchPage = () => {
 							}}
 						>
 							<img
-								className={
-									'rotate-45 w-[60px] h-[60px] rounded-xl bg-cover row-span-2 mx-4'
-								}
+								className={'row-span-2 mx-4 h-[60px] w-[60px] rotate-45 rounded-xl bg-cover'}
 								src={image?.[2]?.link}
 							/>
 							<div className='flex flex-col'>
