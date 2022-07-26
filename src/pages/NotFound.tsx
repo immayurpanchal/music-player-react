@@ -10,7 +10,7 @@ const NotFound = () => {
 	return (
 		<div>
 			<div>404 Page</div>
-			<div className='border-dark-900 border-solid border-2 p-4'>
+			<div className='  border-2 border-solid border-dark-900  p-4'>
 				<Checkbox
 					checked={checked}
 					fillClassName='fill-skin-500'
@@ -19,6 +19,7 @@ const NotFound = () => {
 					widthClassName='w-6'
 					onChange={handleChange}
 				/>
+				<div className='flex items-center justify-between gap-x-3'></div>
 			</div>
 		</div>
 	)
