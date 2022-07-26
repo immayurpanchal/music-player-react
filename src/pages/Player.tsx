@@ -99,7 +99,7 @@ const Player = () => {
 				<span className='text-2xl'>Now Playing</span>
 				<div className='flex gap-x-3'>
 					<Button onClick={handlePlaylistMenu}>
-						<Playlist />
+						<Playlist fillClassName='fill-dark-100' />
 					</Button>
 					<Button className='h-6 w-6' onClick={handleMore}>
 						<More fillClassName='fill-dark-100' />
