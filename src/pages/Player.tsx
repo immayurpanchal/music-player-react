@@ -14,13 +14,18 @@ import Random from '../components/Icons/Random'
 import Repeat from '../components/Icons/Repeat'
 import Volume from '../components/Icons/Volume'
 
+type Image = {
+	quality: string
+	link: string
+}
+
 export type Song = {
 	artist: string
 	name: string
 	downloadUrl: string
-	image: string
-	id?: string
-	year?: number | string
+	image: Array<Image>
+	id: string
+	year: number
 }
 
 type PlayerProps = {
