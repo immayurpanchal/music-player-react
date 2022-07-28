@@ -24,8 +24,8 @@ export interface Song {
 	language: string
 	hasLyrics: string
 	artist: string
-	image?: ImageEntityOrDownloadUrlEntity[]
+	image?: ImageEntityOrDownloadUrlEntity[] | string
 	url: string
 	copyright: string
-	downloadUrl?: ImageEntityOrDownloadUrlEntity[]
+	downloadUrl?: ImageEntityOrDownloadUrlEntity[] | string
 }
