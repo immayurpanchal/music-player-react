@@ -1,34 +1,39 @@
-import { useState } from 'react'
 import Button from '../Button/Button'
 import Pause from '../Icons/Pause'
 import Play from '../Icons/Play'
 import Polygon from '../Polygon/Polygon'
+import Slider from '../Slider/Slider'
 import Typography from '../Typography/Typography'
 
-const MiniPlayer = () => {
-	const [isPlaying, setIsPlaying] = useState(false)
+type MiniPlayerProps = {
+	image: string
+	title: string
+	artist: string
+	progress: number
+	isPlaying: boolean
+	handleButtonClick: () => void
+}
+
+const MiniPlayer = (props: MiniPlayerProps) => {
+	const { image, title, artist, progress, isPlaying, handleButtonClick } = props
+
 	return (
-		<div className='neumorphism flex justify-around	rounded-t-3xl	px-5 py-3 '>
-			<Polygon
-				height={60}
-				id={''}
-				image={'https://c.saavncdn.com/editorial/logo/JhakaasRemakes_20220105155217.jpg'}
-				width={60}
-			/>
+		<div className='neumorphism flex grow items-center	justify-between	rounded-t-3xl px-5 py-3'>
+			<Polygon className='shrink-0' height='100%' id='mini-player-img' image={image} />
 			<div className='flex flex-col  gap-y-2'>
-				<Typography type='subtitle'>Butta Bomma</Typography>
+				<Typography>{title}</Typography>
 				<Typography className='text-dark-100' type='subCaption'>
-					Armaan Malik
+					{artist}
 				</Typography>
-				<div className='border-t-2'></div>
+				<Slider currentProgressClassName='bg-skin-100' percent={progress} />
 			</div>
 			{isPlaying && (
-				<Button action='pressed' shape='circle' onClick={() => setIsPlaying(false)}>
+				<Button action='pressed' className='shrink-0' shape='circle' onClick={handleButtonClick}>
 					<Pause fillClassName='fill-dark-100' />
 				</Button>
 			)}
 			{!isPlaying && (
-				<Button shape='circle' onClick={() => setIsPlaying(true)}>
+				<Button shape='circle' onClick={handleButtonClick}>
 					<Play fillClassName='fill-dark-100' />
 				</Button>
 			)}
