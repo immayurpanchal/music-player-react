@@ -13,7 +13,17 @@ const SongList = (props: Props) => {
 			{songs.map((currentSong: Song) => {
 				const { name, image, id, year } = currentSong
 
-				return <SongListItem key={id} id={id} image={image[2].link} name={name} year={year} />
+				return (
+					<SongListItem
+						key={id}
+						id={id}
+						image={image[2].link}
+						isPlaying={false}
+						isPressed={false}
+						name={name}
+						year={year}
+					/>
+				)
 			})}
 		</div>
 	)
