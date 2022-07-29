@@ -18,7 +18,7 @@ const Button = (props: ButtonProps) => {
 	const getSize = () => {
 		switch (size) {
 			case 'small':
-				return 'w-10 h-10'
+				return 'w-10 h-10 p-2'
 			case 'large':
 				return 'w-24 h-24 p-6'
 			default:
