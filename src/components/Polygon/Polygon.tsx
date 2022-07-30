@@ -1,37 +1,45 @@
-type Props = {
+import React from 'react'
+type PolygonProps = {
+	width?: number | string
+	height?: number | string
 	image: string
-	id: number | string
-	width?: number
-	height?: number
+	id: string
 }
 
-const Polygon = (props: Props) => {
-	const { id, image, width = 48, height = 48 } = props
+const Polygon = (props: React.SVGProps<SVGSVGElement> & PolygonProps) => {
+	const { id, image, width, height, ...rest } = props
+
+	let calculatedHeight = height || 50
+	const calculatedWidth = width || 46
+
+	if (typeof height === 'number' && typeof width === 'number') {
+		calculatedHeight = width * (46 / 50)
+	}
 
 	return (
 		<svg
 			fill='none'
-			height={height}
-			viewBox={`0 0 ${width} ${height}`}
-			width={width}
+			height={calculatedHeight}
+			viewBox='0 0 46 50'
+			width={calculatedWidth}
 			xmlns='http://www.w3.org/2000/svg'
+			{...rest}
 		>
-			{/* <clipPath id={`myClipPath-${id}`}> */}
 			<path
-				d='M25.75 1.74241L39.4006 9.62361C41.7211 10.9634 43.1506 13.4393 43.1506 16.1188V31.8812C43.1506 34.5607 41.7211 37.0366 39.4006 38.3764L25.75 46.2576C23.4295 47.5973 20.5705 47.5973 18.25 46.2576L4.59936 38.3764C2.27886 37.0366 0.849365 34.5607 0.849365 31.8812V16.1188C0.849365 13.4393 2.27886 10.9634 4.59936 9.62361L18.25 1.74241C20.5705 0.402667 23.4295 0.402668 25.75 1.74241Z'
+				d='M40.7756 9.97409L27.125 2.09289C24.5724 0.619174 21.4276 0.619174 18.875 2.09289L5.22436 9.97409C2.67181 11.4478 1.09937 14.1714 1.09937 17.1188V32.8812C1.09937 35.8286 2.67181 38.5522 5.22436 40.0259L18.875 47.9071C21.4276 49.3808 24.5724 49.3808 27.125 47.9071L40.7756 40.0259C43.3282 38.5522 44.9006 35.8286 44.9006 32.8812V17.1188C44.9006 14.1714 43.3282 11.4478 40.7756 9.97409Z'
 				fill={`url(#img-${id})`}
-				// stroke='black'
+				stroke='black'
+				strokeWidth='0.1'
 			/>
-			{/* </clipPath> */}
 			<defs>
 				<pattern
-					height={height}
+					height={calculatedHeight}
 					id={`img-${id}`}
 					patternUnits='userSpaceOnUse'
-					viewBox={`0 0 ${width} ${height}`}
-					width={width}
+					viewBox={`0 0 ${calculatedWidth} ${calculatedHeight}`}
+					width={calculatedWidth}
 				>
-					<image height={height} radius='100%' width={width} xlinkHref={image}></image>
+					<image height='100%' radius='100%' width='100%' xlinkHref={image}></image>
 				</pattern>
 			</defs>
 		</svg>
