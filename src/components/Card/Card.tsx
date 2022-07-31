@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { HTMLAttributes } from 'react'
 import Typography from '../Typography/Typography'
 type Props = {
-	title: string
+	title?: string
 	image: string
 }
 
@@ -12,7 +12,7 @@ const Card = (props: Props & HTMLAttributes<HTMLDivElement>) => {
 	return (
 		<div className={cardContainerClass} {...rest}>
 			<img alt={title} className='rounded-2xl' src={image} />
-			<Typography type='caption'>{title}</Typography>
+			{title && <Typography type='caption'>{title}</Typography>}
 		</div>
 	)
 }

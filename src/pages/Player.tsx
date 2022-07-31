@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import useSWR from 'swr'
 import Button from '../components/Button/Button'
 import BackChevron from '../components/Icons/BackChevron'
 import Disk from '../components/Icons/Disk'
@@ -15,24 +13,29 @@ import Previous from '../components/Icons/Previous'
 import Random from '../components/Icons/Random'
 import Repeat from '../components/Icons/Repeat'
 import Volume from '../components/Icons/Volume'
-import { Song } from '../types/song'
 
-export type PlayerProps = {
-	singer: string
-	title: string
-	trackSrc: string
-	image: string
+type Image = {
+	quality: string
+	link: string
 }
 
-const fetcher = (url: string) =>
-	fetch(url)
-		.then(r => r.json())
-		.then(r => r.results)
+export type Song = {
+	artist: string
+	name: string
+	downloadUrl: string
+	image: Array<Image>
+	id: string
+	year: number
+}
 
-const Player = () => {
-	const { state } = useLocation()
-	const { id } = state as { id: string }
-	const { data, error } = useSWR(`https://saavn.me/songs?id=${id}`, fetcher)
+type PlayerProps = {
+	song: Song
+}
+
+const Player = (props: PlayerProps) => {
+	const { song } = props || {}
+	const { artist: singer, name: title, downloadUrl, image: imageUrl } = song
+
 	const playerRef = useRef<HTMLAudioElement>(null)
 	const [isPlaying, setIsPlaying] = useState(false)
 
@@ -73,22 +76,11 @@ const Player = () => {
 	}
 
 	useEffect(() => {
-		if (data && !isPlaying) {
-			onPlay()
-		}
-	}, [data])
+		onPlay()
+	}, [])
 
-	if (error) {
-		return <div>failed to load</div>
-	}
-
-	if (!data) {
-		return <div>Loading...</div>
-	}
-
-	const { artist: singer, name: title, downloadUrl, image: imageUrl } = data as Song
-	const trackSrc = downloadUrl?.[4]?.link
-	const image = imageUrl?.[2]?.link
+	const trackSrc = downloadUrl
+	const image = imageUrl
 
 	return (
 		<div className='grid gap-y-16'>
@@ -99,7 +91,7 @@ const Player = () => {
 				<span className='text-2xl'>Now Playing</span>
 				<div className='flex gap-x-3'>
 					<Button onClick={handlePlaylistMenu}>
-						<Playlist />
+						<Playlist fillClassName='fill-dark-100' />
 					</Button>
 					<Button className='h-6 w-6' onClick={handleMore}>
 						<More fillClassName='fill-dark-100' />
