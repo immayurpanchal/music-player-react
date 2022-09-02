@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
 import Button from '../components/Button/Button'
@@ -6,7 +7,9 @@ import Disk from '../components/Icons/Disk'
 import More from '../components/Icons/More'
 import Playlist from '../components/Icons/Playlist'
 import Typography from '../components/Typography/Typography'
+import { MiniPlayerProps } from '../types/miniPlayer'
 import { Song } from '../types/song'
+import { MiniPlayerContext } from '../utils/context'
 import { getMins, getValueInK } from '../utils/utils'
 
 type Props = {
@@ -21,13 +24,25 @@ const fetcher = (url: string) =>
 
 const Details = () => {
 	const location = useLocation()
-	const navigate = useNavigate()
+	const { setMiniPlayer } = useContext(MiniPlayerContext)
 	const { type, id } = location.state as Props
 
 	const { data, error } = useSWR(
 		type === 'playlist' ? `https://saavn.me/playlists?id=${id}` : `https://saavn.me/albums?id=${id}`,
 		fetcher
 	)
+
+	const handleTrackClick = (song: Song) => {
+		const { name: title, artist, image } = song
+		setMiniPlayer({
+			image: image?.[2]?.link || '',
+			title,
+			artist,
+			progress: 0,
+			isPlaying: true,
+			handleButtonClick: () => {}
+		} as MiniPlayerProps)
+	}
 
 	if (error) {
 		return <div>failed to load</div>
@@ -87,7 +102,7 @@ const Details = () => {
 						<div
 							key={index}
 							className='grid grid-cols-[auto_minmax(187px,_1fr)_auto] gap-x-4'
-							onClick={() => navigate('/player', { state: { id: song.id } })}
+							onClick={() => handleTrackClick(song)}
 						>
 							<Typography>{(index + 1).toString().padStart(2, '0')}</Typography>
 							<div className='flex flex-col'>

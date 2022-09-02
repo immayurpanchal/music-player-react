@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { HTMLAttributes } from 'react'
 import Typography from '../Typography/Typography'
+
 type Props = {
 	title?: string
 	image: string

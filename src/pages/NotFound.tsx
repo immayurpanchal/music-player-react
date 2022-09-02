@@ -1,3 +1,4 @@
+import { Button } from '@immayurpanchal/music-player-lib-core'
 import { useState } from 'react'
 import Checkbox from '../components/Checkbox/Checkbox'
 import VoiceSearch from '../components/Icons/VoiceSearch'
@@ -15,6 +16,7 @@ const NotFound = () => {
 		<div>
 			<div>404 Page</div>
 			<div className='border-2 border-solid border-dark-900  p-4'>
+				<Button shape='circle'>Wow </Button>
 				<Checkbox
 					checked={checked}
 					fillClassName='fill-skin-500'

@@ -10,7 +10,7 @@ const MiniPlayer = (props: MiniPlayerProps) => {
 	const { image, title, artist, progress, isPlaying, handleButtonClick } = props
 
 	return (
-		<div className='neumorphism flex items-center	justify-between	rounded-t-3xl px-5 py-3'>
+		<div className='neumorphism grid grid-cols-[auto_minmax(50px,_1fr)_auto] items-center	gap-2	rounded-t-3xl px-5 py-3'>
 			<Polygon className='shrink-0' height='100%' id='mini-player-img' image={image} />
 			<div className='flex flex-col  gap-y-2'>
 				<Typography>{title}</Typography>

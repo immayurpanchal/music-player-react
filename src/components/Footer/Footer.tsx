@@ -4,17 +4,24 @@ import Playlist from '../Icons/Playlist'
 import Songs from '../Icons/Songs'
 import Polygon from '../Polygon/Polygon'
 import { Outlet, useNavigate } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import classNames from 'classnames'
 import { IconProps } from '../Icons/types/types'
 import MiniPlayer from '../MiniPlayer/MiniPlayer'
+import { MiniPlayerContext } from '../../utils/context'
+
 const Footer = () => {
+	const { miniPlayer, setMiniPlayer } = useContext(MiniPlayerContext)
 	const navigate = useNavigate()
 	const [selectedPage, setSelectedPage] = useState('')
 
 	const handleClick = (page: string) => {
 		navigate(`/${page}`)
 		setSelectedPage(page)
+	}
+
+	const handleButtonClick = () => {
+		setMiniPlayer({ ...miniPlayer, isPlaying: !miniPlayer.isPlaying })
 	}
 
 	// Higher Order Component
@@ -48,7 +55,7 @@ const Footer = () => {
 				<Outlet />
 			</div>
 			<div className='fixed bottom-0 w-full'>
-				<MiniPlayer />
+				<MiniPlayer {...miniPlayer} handleButtonClick={handleButtonClick} />
 				<div className='grid grid-cols-5  bg-grey-50 p-3 '>
 					{getSomething(
 						() => (
