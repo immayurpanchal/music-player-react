@@ -7,6 +7,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import classNames from 'classnames'
 import { IconProps } from '../Icons/types/types'
+import MiniPlayer from '../MiniPlayer/MiniPlayer'
 const Footer = () => {
 	const navigate = useNavigate()
 	const [selectedPage, setSelectedPage] = useState('')
@@ -43,22 +44,27 @@ const Footer = () => {
 
 	return (
 		<>
-			<Outlet />
-			<div className='fixed bottom-0 grid w-full grid-cols-5  bg-grey-50 p-3 '>
-				{getSomething(
-					() => (
-						<Polygon id='' image='' />
-					),
-					'home',
-					{
-						id: 'footer-avatar',
-						image: 'https://c.saavncdn.com/editorial/logo/JhakaasRemakes_20220105155217.jpg'
-					}
-				)}
-				{getSomething(Songs, 'list')}
-				{getSomething(Album, 'album')}
-				{getSomething(Artists, 'artists')}
-				{getSomething(Playlist, 'playlist')}
+			<div className='mb-40'>
+				<Outlet />
+			</div>
+			<div className='fixed bottom-0 w-full'>
+				<MiniPlayer />
+				<div className='grid grid-cols-5  bg-grey-50 p-3 '>
+					{getSomething(
+						() => (
+							<Polygon id='' image='' />
+						),
+						'home',
+						{
+							id: 'footer-avatar',
+							image: 'https://c.saavncdn.com/editorial/logo/JhakaasRemakes_20220105155217.jpg'
+						}
+					)}
+					{getSomething(Songs, 'list')}
+					{getSomething(Album, 'album')}
+					{getSomething(Artists, 'artists')}
+					{getSomething(Playlist, 'playlist')}
+				</div>
 			</div>
 		</>
 	)

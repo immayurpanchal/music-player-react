@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound'
 import SearchPage from './pages/Search'
 
 const App = () => {
+	// const [miniPlayer, setMiniPlayer] = useState<MiniPlayerProps>(miniPlayerInitialValue)
 	return (
 		<BrowserRouter>
 			<Routes>
